@@ -1,0 +1,94 @@
+<!--
+    The "baseof.html" file acts like the base template for the entire Hugo website.
+-->
+
+<!-- 
+    The DOCTYPE is a historical artifact that needs to be included for everything else to work right.
+-->
+<!DOCTYPE html>
+
+<!-- html tag wraps all content on the page. It's the root element. -->
+<html>
+    <!-- 
+        head is used to include things on your page that isn't content shown to viewers.
+
+        Such as: CSS styles, character set declarations, etc.
+    -->
+    <head>
+        <!-- charset specifies the character set for your document. In this caser, UTF-8. -->
+        <meta charset="utf-8">
+
+        <!-- 
+            Things such as the meta data description for your page can be used for Search Engine Optimization (SEO), as some meta data for your page has the potential
+            to make your page appear higher in relevant searches performed in search engines.
+         -->
+        <meta name="description" content="Coding Beagle is primarily a personal software engineering blog and portfolio containing projects,articles, knowledge sharing, tutorials, and other content related
+        to programming in various different languages and environments.">
+
+        <!-- title sets the title of the page, appearing in the browser tab when the page is loaded in. -->
+        <!-- TODO: Include zico logo! :D -->
+        <title>{{.Title}}</title>
+
+        <!-- 
+            Add favicon (Favorites Icon).
+            It's usually used as the icon when you bookmark or favorite a website. However browsers also typically use it for the tab the website is open in.
+
+            the "link" tag specifies relationships between the current document and an external resource. Typically this would be stylesheets, but can also be things such as scripts or the favicon.
+            "rel" stands for "relationship", and is used to indicate the type of relationship the external resourc has to the document.
+        -->
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <!-- Link to stylesheets -->
+        <link rel="stylesheet" href="{{ .Site.BaseURL }}main.css">
+
+        <!-- Load Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    </head>
+    
+    <!-- The body element contains all the content that displays on the page. -->
+    <body>
+        <div class='super-container'>
+            <div></div>
+            <div class="container">
+                <div class="content-body-grid">
+                    <div class='site-logo'>
+                        <img class='site-logo-img' src='{{ .Site.BaseURL }}site-logo.png'>
+                    </div>
+                    <div class='social'>
+                        <h1 class='page-title'>{{.Site.Title}}</h1>
+                        <h2 class='page-subtitle'>Paws to the keyboard!</h2>
+                        <div class='social-media-container'>
+                            <!-- 
+                                A table can be an easy way to list content like images next to each other, by styling the list items to be
+                                inline, with float: left
+                            -->
+                            <ul class='social-media-icon-list'>
+                                <!-- 
+                                    The 'a' tag is used to create hyperlinks to web pages. The destination is specified using the 'href' attribute. 
+                                    The 'target' attribute can be used to make the link open in (usually) a new tab, by using the '_blank' value.
+                                -->
+                                <li><a href="https://github.com/CodingBeagle" target="_blank"><img class='social-media-icon' src="/github.svg"></a></li>
+                                <li><a href="https://www.linkedin.com/in/kasper-rieder/" target="_blank"><img class='social-media-icon' src="/linkedin.svg"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class='menu'>
+                        <ul class='menu-list'>
+                            <li><a href="{{ .Site.BaseURL }}">ARTICLES</a></li>
+                            <li><a href="{{ .Site.BaseURL }}/portfolio">PORTFOLIO</a></li>
+                            <!--<li><a href="{{ .Site.BaseURL }}">DRAWINGS</a></li>-->
+                            <li><a href="{{ .Site.BaseURL }}/about">ABOUT</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    {{ block "main" . }}
+                    {{ end }}
+                </div>
+            </div>
+            <div></div>
+        </div>
+    </body>
+</html>

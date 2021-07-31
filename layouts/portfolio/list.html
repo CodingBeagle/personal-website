@@ -1,0 +1,24 @@
+{{ define "main" }}
+
+<div class="portfolio-intro">
+    {{ .Content }}
+</div>
+
+<div class="portfolio-grid-wrapper">
+    <div></div>
+    <div class="portfolio-grid">
+    {{ range .Pages }}
+        <a href="{{ .Permalink }}">
+            <div class="portfolio-entry">
+                <div class="portfolio-entry-title">
+                    <h2>{{ .Title }}</h2>
+                </div>
+                <img class="site-logo-img" src="{{ .Site.BaseURL }}portfolio-thumbs/{{ .Params.thumbnail }}.png">
+            </div>
+        </a>
+    {{ end }}
+    </div>
+    <div></div>
+</div>
+
+{{ end }}

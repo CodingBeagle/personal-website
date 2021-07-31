@@ -1,0 +1,11 @@
+# It is considered best practice not to define the protocol of your baseURL in the Hugo config file.
+baseURL = "//codingbeagle.com/"
+languageCode = "en-us"
+title = "Coding Beagle"
+# summaryLength is used to customize the amount of words that should be used for the
+# auto generated .Summary property of Hugo content in markdown files, for example for blog posts / articles.
+summaryLength = 20
+
+[permalinks]
+    articles = "articles/:year/:month/:title/"
+    portfolio = "portfolio/:year/:month/:title/"
