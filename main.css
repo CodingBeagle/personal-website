@@ -1,0 +1,330 @@
+.page-title {
+    font-family: 'Lora', serif;
+    color: #f78769;
+    font-size: 3.052em;
+    text-decoration: none;
+    font-weight: bold;
+    font-style: italic;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+.page-subtitle {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: normal;
+    color: #bbbbbb;
+    text-align: center;
+    margin-top: 0.5em;
+    margin-bottom: 0px;
+}
+
+body {
+    background-color: #f3f3f3;
+}
+
+.super-container {
+    margin-top: 2%;
+    display: grid;
+    grid-template-columns: 1fr 60% 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+@media (max-width: 800px) {
+    .super-container {
+        margin-top: 0px;
+        grid-template-columns: 1fr 16fr 1fr;
+    }
+}
+
+.container {
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr;
+    /* 
+        Using 'auto' for the rows means that the height of the rows will at max be whatever the
+        size of the largest element is.
+
+        Doing this, I avoid that articles / blog posts stretching out the height of the grid overall has any effect on the scaling
+        of things in the header area.
+
+        TODO: Note to self, perhaps I actually went a bit overboard with using grids for the header / menu area? It might have been totally fine with stacked block elements.
+    */
+    grid-template-rows: auto auto;
+    grid-template-areas:
+    'main'
+    'articles'
+}
+
+.content-body-grid {
+    grid-area: main;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    justify-items: center;
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Grid_Template_Areas */
+    grid-template-areas:
+    'logo'
+    'social'
+    'menu'
+}
+
+.articles {
+    grid-area: articles;
+    display: grid;
+}
+
+.article-entry {
+    display: block;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-color: #bbbbbb;
+    border-bottom-style: dashed;
+    border-bottom-width: 0.1em;
+}
+
+.article-entry a {
+    /* Remove the default text decorations from the a element, such as underlining */
+    text-decoration: none;
+
+    /* The link inherits the color from the article entry header element */
+    color: inherit;
+}
+
+.article-entry-header {
+    text-align: center;
+    font-family: 'Lora', serif;
+    color: #777777;
+    font-style: italic;
+    font-weight: lighter;
+}
+
+h1.article-entry-header::after {
+    display: block;
+    content: "";
+    width: 25%;
+    height: 2px;
+    margin: 0.5em auto;
+    background-color: #f3f3f3;
+}
+
+.article-entry-summary {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-weight: lighter;
+    color: #555555;
+}
+
+.article-entry-meta {
+    text-align: center;
+    padding: 0px;
+}
+
+ul.article-entry-meta li {
+    font-size: 1.0em;
+    font-family: 'Lora', serif;
+    color: #bbbbbb;
+    text-align: center;
+    /* By setting list items to display by inline, the element becomes an inline element which do not generate line breaks before or after themselves. */
+    display: inline;
+    margin-right: 0.4em;
+}
+
+/*
+    :first-child is a PSEUDO CLASS representing the first child of a collection.
+    
+    ::after is a PSEUDO ELEMENT that represents the last child of a selected element. 
+    It's often used to add cosmetic content to an element with the content property.
+*/
+ul.article-entry-meta li:first-child::after {
+    content: "\00B7";
+    margin-left: .75em;
+}
+
+.site-logo {
+    display: grid;
+    align-items: center;
+    grid-area: logo;
+    width: 35%;
+}
+
+.site-logo-img {
+    /*
+        object-fit property sets how content of a replaced element (such as img) should be resized to fit its container.
+        The 'cover' value will scale the content to maintain its aspect ratio while fitting within the element's content box.
+    */
+    object-fit: cover;
+    width: 100%;
+}
+
+.social {
+    grid-area: social;
+}
+
+.menu {
+    grid-area: menu;
+    border-color: #bbbbbb;
+    border-spacing: 2em;
+    border-top-style: dashed;
+    border-top-width: 0.1em;
+    border-bottom-style: dashed;
+    border-bottom-width: 0.1em;
+}
+
+.articles {
+    grid-area: articles;
+}
+
+.social-media-container {
+    margin-top: 0px;
+    display: grid;
+    justify-items: center;
+}
+
+.social-media-icon {
+    width: 35px;
+}
+
+.social-media-icon-list {
+    padding: 0px;
+}
+
+/* For a 'ul' element with class social-media-icon-list, apply style to all child 'li' elements. */
+ul.social-media-icon-list li {
+    display: inline;
+    float: left;
+    margin-left: 0.4em;
+    margin-right: 0.4em;
+    padding: 0px;
+}
+
+.menu-list {
+    padding: 0px;
+}
+
+ul.menu-list li {
+    /* 
+        Using a combination of display: inline-block with position: relative 
+        Seems to give the best result for getting list items centered vertically in a surrounding div.
+        Using float: left seems to offset them vertically. Not sure why...
+    */
+    display: inline-block;
+    position: relative;
+    margin-left: 0.4em;
+    margin-right: 0.4em;
+    padding: 0px;
+    list-style: none;
+}
+
+ul.menu-list a {
+    font-family: 'Lora', serif;
+    display: inline;
+    font-size: 14px;
+    /* specify spacing between characters. */
+    letter-spacing: 1px;
+    color: #777777;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+ul.menu-list a {
+    /* Remove hyperlink underlining and other typical link styles */
+    text-decoration: none;
+    /* 
+        The transition property allows you to define the transition between two states of an element.
+        Different states can be defined using pseudo classes.
+    */
+    transition: color 0.25s;
+}
+
+/*
+    CSS pseudo classes are keywords added to a selector that specifies a specific state of the element.
+    'hover' is a pseudo class which is a state that happens when the mouse hovers over the element.
+*/
+ul.menu-list a:hover {
+    color: #f78769;
+}
+
+.article-link {
+    text-decoration: none;
+}
+
+.article-content {
+    font-family: 'Lora', serif;
+    font-size: 16px;
+    padding-left: 15%;
+    padding-right: 15%;
+    color: #555555;
+}
+
+.article-content a {
+    text-decoration: underline;
+}
+
+.portfolio-intro p {
+    font-family: 'Lora', serif;
+    font-size: 16px;
+    text-align: center;
+    color: #777777;
+    font-weight: normal;
+}
+
+.portfolio-grid-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 60% 1fr;
+    margin-top: 10px;
+}
+
+.portfolio-grid {
+    display: grid;
+    justify-items: center;
+    justify-content: center;
+    grid-gap: 25px;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(300px, max-content)
+    );
+}
+
+.portfolio-entry {
+    /* 
+        Since we use position: absolute in the portfolio-entry-title,
+        we have to use a position property other than position: static (which is default)
+        to make a div with portfolio-entry the containing block!
+        https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block
+    */
+    position: relative;
+    border: 1px dotted #777777;
+    border-radius: 5px;
+}
+
+.portfolio-entry-title {
+    /*
+        Absolute for position removes the element from the normal document flow.
+        No space is created for the element in the page layout.
+        The element is positioned relative to its closest positioned ancestor, otherwise,
+        It is placed relative to the initial "containing block".
+    */
+    position: absolute;
+    width: 100%;
+    height: 25%;
+    background-color: rgba(0, 0, 0, 0.35);
+
+    /* These 4 properties is used to center text vertically and horizontally */
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    flex-direction: column;
+}
+
+.portfolio-entry-title h2 {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-weight: bold;
+    color:white;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
